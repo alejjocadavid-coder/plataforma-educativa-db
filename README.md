@@ -167,6 +167,7 @@ CREATE TABLE PROGRESO (
     CONSTRAINT chk_porcentaje CHECK (porcentaje_progreso BETWEEN 0.00 AND 100.00),
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
+</details>
 ---
 
 ## 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
@@ -174,4 +175,68 @@ Estrategia de automatización modular utilizando las librerías Faker y mysql-co
 
 ---
 
+import mysql.connector
+import pandas as pd
+from faker import Faker
+import random
 
+# 1. Establecer la conexión con la base de datos local
+conexion = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="Alejjo2026",
+    database="plataforma_educativa"
+)
+cursor = conexion.cursor()
+fake = Faker()
+
+print("Generando e insertando 1,500 estudiantes de forma masiva...")
+
+# 2. Bucle controlado para inserciones masivas de alumnos únicos
+for _ in range(1500):
+    nombre = fake.name()
+    email = fake.unique.email()  # Garantiza la restricción UNIQUE del correo
+    fecha_registro = fake.date_this_year()
+    
+    query = "INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES (%s, %s, %s)"
+    valores = (nombre, email, fecha_registro)
+    cursor.execute(query, valores)
+
+# 3. Guardar cambios de forma definitiva en el motor transaccional y cerrar
+conexion.commit()
+cursor.close()
+conexion.close()
+print("¡Carga masiva finalizada con éxito!")
+
+📊 3. Inserciones Base de Control (DML SQL)
+Script complementario con inserciones manuales unitarias para verificar la correcta sincronización de las llaves foráneas en el entorno de desarrollo local.
+
+-- =========================================================
+-- CAPA DML: INSERCIÓN DE DATOS DE CONTROL UNIFICADOS
+-- =========================================================
+
+-- 1. Población del cuerpo docente básico
+INSERT INTO DOCENTES (nombre, especialidad) VALUES 
+('Ingri Johana Rolón', 'Bases de Datos Relacionales'), 
+('Alejandro Cadavid', 'Ingeniería de Datos'),
+('Luz Angelith Espinosa', 'Inteligencia de Negocios');
+
+-- 2. Población del catálogo inicial de cursos
+INSERT INTO CURSOS (nombre_curso, descripcion, id_docente) VALUES
+('Bootcamp de Analítica de Datos', 'Curso intensivo de SQL, Python y Power BI', 2),
+('Inteligencia de Negocios Avanzada', 'Modelado dimensional y arquitectura DAX', 3);
+
+-- 3. Población de estudiantes maestros de prueba
+INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES 
+('Carlos Mendoza', 'carlos.mendoza@fakermail.com', '2026-01-15'), 
+('Diana Arbelaez', 'diana.arbelaez@fakermail.com', '2026-02-10');
+
+-- 4. Inserciones transaccionales correlativas (Matrículas)
+INSERT INTO INSCRIPCIONES (id_estudiante, id_curso, fecha_inscripcion) VALUES 
+(1, 1, '2026-01-16'),
+(2, 2, '2026-02-11');
+
+-- 5. Logs analíticos de progreso inicial de control
+INSERT INTO PROGRESO (id_inscripcion, porcentaje_progreso, estado) VALUES
+(1, 0.00, 'No iniciado'),
+(2, 15.50, 'En curso');
