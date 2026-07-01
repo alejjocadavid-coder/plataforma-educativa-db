@@ -101,7 +101,44 @@ Para mitigar anomalías de inserción, actualización o borrado, implementamos u
 
 > **Justificación de Integridad:** El uso de `ON DELETE CASCADE` en la tabla `PROGRESO` garantiza que ante una baja de matrícula controlada, el sistema purgue los logs asociados de manera síncrona, eliminando basura lógica y optimizando el almacenamiento.
 
+### Reglas de Negocio Universales
+```sql
+CREATE DATABASE IF NOT EXISTS plataforma_educativa;
+USE plataforma_educativa;
+
+CREATE TABLE DOCENTES (
+    id_docente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    especialidad VARCHAR(100)
+);
+2. Un curso está estructurado de manera obligatoria por uno o muchos módulos independientes.
+3. Un docente tiene la capacidad de coordinar y dictar diferentes cursos dentro de su especialidad.
+4. Cada inscripción efectuada genera un registro síncrono de progreso para monitorear el avance del alumno por cada módulo.
+
 ---
+
+```sql
+CREATE DATABASE IF NOT EXISTS plataforma_educativa;
+USE plataforma_educativa;
+
+CREATE TABLE DOCENTES (
+    id_docente INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    especialidad VARCHAR(100)
+);
+
+CREATE TABLE ESTUDIANTES (
+    id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    email VARCHAR(150) UNIQUE NOT NULL,
+    fecha_registro DATE NOT NULL
+);
+---
+
+
+
+
+
 
 ## 🛠️ Código Estructurado DDL (SQL)
 
