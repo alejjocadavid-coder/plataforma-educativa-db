@@ -170,3 +170,46 @@ CREATE TABLE PROGRESO (
     CONSTRAINT chk_porcentaje CHECK (porcentaje_progreso BETWEEN 0.00 AND 100.00),
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
+
+🐍 Estrategia DML e Inyección Automática (Python)
+Para simular un entorno empresarial de alta concurrencia previo a la analítica en Power BI, descartamos las inserciones manuales y desarrollamos un script en Python utilizando Pandas, mysql-connector-python y la librería Faker.
+
+Logros de Calidad del Dato (Data Quality)
+1,500 Alumnos Únicos: Generados algorítmicamente blindando la restricción UNIQUE del correo electrónico.
+
+12,000+ Filas de Trazabilidad: Población masiva de logs en la tabla PROGRESO distribuyendo estados de avance de forma probabilística.
+
+Coherencia Temporal Blindada: Reglas lógicas impiden que una fecha de inscripción o progreso sea anterior a la fecha de creación del registro maestro del alumno.
+
+import mysql.connector
+from faker import Faker
+import random
+
+# 1. Establecer conexión con la base de datos
+conexion = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="Alejjo2026",
+    database="plataforma_educativa"
+)
+cursor = conexion.cursor()
+fake = Faker()
+
+print("Iniciando inyección de datos masiva...")
+
+# Ejemplo del bloque de población para 1,500 estudiantes
+for _ in range(1500):
+    nombre = fake.name()
+    email = fake.unique.email()
+    fecha_registro = fake.date_this_year()
+    
+    query = "INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES (%s, %s, %s)"
+    valores = (nombre, email, fecha_registro)
+    cursor.execute(query, valores)
+
+conexion.commit()
+cursor.close()
+conexion.close()
+print("¡Carga masiva completada con éxito!")
+
+📈 Objetivos Analíticos SoportadosEl modelo físico y relacional se encuentra optimizado para la conexión directa con herramientas de Business Intelligence (Power BI) resolviendo las siguientes métricas de negocio:A. Tasa de Finalización (Completion Rate)Mide el porcentaje real de avance de los estudiantes matriculados en un programa:$$\text{Tasa de Finalización} = \left( \frac{\sum \text{Módulos Completados}}{\text{Total Módulos del Curso}} \right) \times 100$$Valor Comercial: Permite identificar la retención y el abandono estudiantil en módulos críticos del "libro digital".B. Cursos de Mayor Demanda (Popularidad)Identifica tendencias de mercado mediante la agrupación y conteo analítico de registros en INSCRIPCIONES por cada id_curso.C. Análisis de Retención / Deserción GranularEvaluación de cuellos de botella en la tabla PROGRESO. Si múltiples alumnos se estancan en un estado "En curso" con porcentajes fijos, el equipo de producto puede intervenir un tema de alta dificultad.D. Balance de Carga Académica por DocenteGarantiza el control de calidad, auditando el volumen de estudiantes activos asignados a cada profesor (id_docente en CURSOS).🏁 ConclusionesIntegridad Extrema: Arquitectura libre de redundancia gracias a la normalización estricta en 3FN.Visibilidad de Negocio: El modelo provee un rastro granular del éxito académico del usuario en tiempo real.Escalabilidad: Infraestructura técnica 100% lista para ser explotada por tableros directivos en Power BI y algoritmos predictivos de Machine Learning.
