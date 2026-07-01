@@ -36,7 +36,7 @@ El modelo debe permitir analizar:
 
 # 📑 Modelado de Datos – Proyecto 4 E-Learning
 
-## 🎨 1. Estrategia de Diseño: Categorización Semántica
+## 🎨 Estrategia de Diseño: Categorización Semántica
 
 Para optimizar la interpretación técnica y funcional del modelo, se ha implementado una codificación visual por colores en el diagrama:
 
@@ -44,3 +44,4 @@ Para optimizar la interpretación técnica y funcional del modelo, se ha impleme
 * 🟢 **Verde (Catálogo y Estructura):** `CURSOS` y `MODULOS`. Definen la oferta académica y la jerarquía del contenido.
 * 🟠 **Naranja (Transaccional):** `INSCRIPCIONES`. Representa el evento de negocio donde el usuario adquiere el producto.
 * 🔘 **Gris (Seguimiento / Log):** `PROGRESO`. Registro detallado y dinámico de la actividad del estudiante.
+<img width="996" height="665" alt="image" src="https://github.com/user-attachments/assets/c7ec6f05-7005-4e29-8151-3e927898a6e1" />
