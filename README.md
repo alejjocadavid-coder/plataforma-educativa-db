@@ -171,7 +171,12 @@ CREATE TABLE PROGRESO (
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
 
-🐍 Estrategia DML e Inyección Automática (Python)
+# Proyecto 4: Diseño e Implementación de Base de Datos para Plataforma Educativa (E-Learning)
+### BeTek / Makaia - Misión 15 (Análisis de Datos) 🚀
+**Año:** 2026
+
+---
+### 🐍 Estrategia DML e Inyección Automática (Python)
 Para simular un entorno empresarial de alta concurrencia previo a la analítica en Power BI, descartamos las inserciones manuales y desarrollamos un script en Python utilizando Pandas, mysql-connector-python y la librería Faker.
 
 Logros de Calidad del Dato (Data Quality)
