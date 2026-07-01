@@ -101,55 +101,21 @@ Para mitigar anomalías de inserción, actualización o borrado, implementamos u
 
 > **Justificación de Integridad:** El uso de `ON DELETE CASCADE` en la tabla `PROGRESO` garantiza que ante una baja de matrícula controlada, el sistema purgue los logs asociados de manera síncrona, eliminando basura lógica y optimizando el almacenamiento.
 
-### Reglas de Negocio Universales
-```sql
-CREATE DATABASE IF NOT EXISTS plataforma_educativa;
-USE plataforma_educativa;
+## 🛠️ Código y Scripts del Proyecto
 
-CREATE TABLE DOCENTES (
-    id_docente INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    especialidad VARCHAR(100)
-);
-2. Un curso está estructurado de manera obligatoria por uno o muchos módulos independientes.
-3. Un docente tiene la capacidad de coordinar y dictar diferentes cursos dentro de su especialidad.
-4. Cada inscripción efectuada genera un registro síncrono de progreso para monitorear el avance del alumno por cada módulo.
+A continuación se presentan los componentes técnicos del proyecto organizados de manera interactiva. Haz clic en cada sección para desplegar el código correspondiente:
 
----
+### 🗂️ 1. Script de Creación de Tablas (DDL)
+Este script define la estructura física de la base de datos en MySQL Workbench, aplicando restricciones de integridad referencial y normalización en 3FN.
+
+<details>
+  <summary>📝 Haz clic aquí para desplegar el Script DDL Completo (SQL)</summary>
 
 ```sql
 CREATE DATABASE IF NOT EXISTS plataforma_educativa;
 USE plataforma_educativa;
 
-CREATE TABLE DOCENTES (
-    id_docente INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    especialidad VARCHAR(100)
-);
-
-CREATE TABLE ESTUDIANTES (
-    id_estudiante INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    email VARCHAR(150) UNIQUE NOT NULL,
-    fecha_registro DATE NOT NULL
-);
----
-
-
-
-
-
-
-## 🛠️ Código Estructurado DDL (SQL)
-
-```sql
-CREATE DATABASE IF NOT EXISTS plataforma_educativa;
-USE plataforma_educativa;
-
--- ========================================================
 -- CAPA 1: MAESTRA CENTRAL
--- ========================================================
-
 CREATE TABLE DOCENTES (
     id_docente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -163,10 +129,7 @@ CREATE TABLE ESTUDIANTES (
     fecha_registro DATE NOT NULL
 );
 
--- ========================================================
 -- CAPA 2: CATÁLOGO ACADÉMICO
--- ========================================================
-
 CREATE TABLE CURSOS (
     id_curso INT AUTO_INCREMENT PRIMARY KEY,
     nombre_curso VARCHAR(200) NOT NULL,
@@ -183,10 +146,7 @@ CREATE TABLE MODULOS (
     FOREIGN KEY (id_curso) REFERENCES CURSOS(id_curso) ON DELETE CASCADE
 );
 
--- ========================================================
--- CAPA 3: TRANSACCIONAL Y DE AVANCE
--- ========================================================
-
+-- CAPA 3: TRANSACCIONAL Y SEGUIMIENTO
 CREATE TABLE INSCRIPCIONES (
     id_inscripcion INT AUTO_INCREMENT PRIMARY KEY,
     id_estudiante INT NOT NULL,
@@ -207,51 +167,11 @@ CREATE TABLE PROGRESO (
     CONSTRAINT chk_porcentaje CHECK (porcentaje_progreso BETWEEN 0.00 AND 100.00),
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
+---
 
-# Proyecto 4: Diseño e Implementación de Base de Datos para Plataforma Educativa (E-Learning)
-### BeTek / Makaia - Misión 15 (Análisis de Datos) 🚀
-**Año:** 2026
+## 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
+Estrategia de automatización modular utilizando las librerías Faker y mysql-connector para la simulación y carga controlada de 1,500 estudiantes únicos sin violar las restricciones lógicas.
 
 ---
-### 🐍 Estrategia DML e Inyección Automática (Python)
-Para simular un entorno empresarial de alta concurrencia previo a la analítica en Power BI, descartamos las inserciones manuales y desarrollamos un script en Python utilizando Pandas, mysql-connector-python y la librería Faker.
 
-Logros de Calidad del Dato (Data Quality)
-1,500 Alumnos Únicos: Generados algorítmicamente blindando la restricción UNIQUE del correo electrónico.
 
-12,000+ Filas de Trazabilidad: Población masiva de logs en la tabla PROGRESO distribuyendo estados de avance de forma probabilística.
-
-Coherencia Temporal Blindada: Reglas lógicas impiden que una fecha de inscripción o progreso sea anterior a la fecha de creación del registro maestro del alumno.
-
-import mysql.connector
-from faker import Faker
-import random
-
-# 1. Establecer conexión con la base de datos
-conexion = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Alejjo2026",
-    database="plataforma_educativa"
-)
-cursor = conexion.cursor()
-fake = Faker()
-
-print("Iniciando inyección de datos masiva...")
-
-# Ejemplo del bloque de población para 1,500 estudiantes
-for _ in range(1500):
-    nombre = fake.name()
-    email = fake.unique.email()
-    fecha_registro = fake.date_this_year()
-    
-    query = "INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES (%s, %s, %s)"
-    valores = (nombre, email, fecha_registro)
-    cursor.execute(query, valores)
-
-conexion.commit()
-cursor.close()
-conexion.close()
-print("¡Carga masiva completada con éxito!")
-
-📈 Objetivos Analíticos SoportadosEl modelo físico y relacional se encuentra optimizado para la conexión directa con herramientas de Business Intelligence (Power BI) resolviendo las siguientes métricas de negocio:A. Tasa de Finalización (Completion Rate)Mide el porcentaje real de avance de los estudiantes matriculados en un programa:$$\text{Tasa de Finalización} = \left( \frac{\sum \text{Módulos Completados}}{\text{Total Módulos del Curso}} \right) \times 100$$Valor Comercial: Permite identificar la retención y el abandono estudiantil en módulos críticos del "libro digital".B. Cursos de Mayor Demanda (Popularidad)Identifica tendencias de mercado mediante la agrupación y conteo analítico de registros en INSCRIPCIONES por cada id_curso.C. Análisis de Retención / Deserción GranularEvaluación de cuellos de botella en la tabla PROGRESO. Si múltiples alumnos se estancan en un estado "En curso" con porcentajes fijos, el equipo de producto puede intervenir un tema de alta dificultad.D. Balance de Carga Académica por DocenteGarantiza el control de calidad, auditando el volumen de estudiantes activos asignados a cada profesor (id_docente en CURSOS).🏁 ConclusionesIntegridad Extrema: Arquitectura libre de redundancia gracias a la normalización estricta en 3FN.Visibilidad de Negocio: El modelo provee un rastro granular del éxito académico del usuario en tiempo real.Escalabilidad: Infraestructura técnica 100% lista para ser explotada por tableros directivos en Power BI y algoritmos predictivos de Machine Learning.
