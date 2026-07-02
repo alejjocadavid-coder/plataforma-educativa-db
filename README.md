@@ -180,6 +180,7 @@ Automatización desarrollada con Faker y mysql-connector-python para poblar el s
 
   <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
 
+```python
 import mysql.connector
 from faker import Faker
 import random
@@ -211,6 +212,9 @@ cursor.close()
 conexion.close()
 print("¡Carga masiva finalizada con éxito!")
 
+```
+
+</details>
 
 ### 📊 3. Inserciones Base de Control (DML SQL)
 Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
