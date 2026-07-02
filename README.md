@@ -178,7 +178,7 @@ CREATE TABLE PROGRESO (
 Automatización desarrollada con `Faker` y `mysql-connector-python` para poblar el sistema de manera masiva, simulando un entorno real de alta concurrencia con miles de interacciones analíticas.
 
 <details>
-  <summary>🐍 Haz clic aquí para desplegar el Script de Inyección Automatizada (Python)</summary>
+  <summary>📝 Haz clic aquí para desplegar el Script de Inyección Automatizada (Python)</summary>
 
 ```python
 import mysql.connector
