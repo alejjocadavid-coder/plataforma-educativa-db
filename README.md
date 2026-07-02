@@ -385,6 +385,10 @@ ORDER BY `Progreso Crítico (%)` ASC
 LIMIT 15;
 
 
+```
+
+</details>
+
 
 ### 📈 Objetivo Analítico (Explotación del Dato)
 El diseño e implementación física del modelo permite dar respuesta directa a las siguientes necesidades de analítica empresarial en tableros de Business Intelligence (Power BI):
@@ -393,10 +397,6 @@ El diseño e implementación física del modelo permite dar respuesta directa a 
 * Cursos más Activos: Identificación de tendencias y demanda comercial contabilizando el volumen de registros históricos almacenados en la tabla INSCRIPCIONES.
 * Tasa de Finalización: Métrica estratégica de negocio para evaluar la efectividad y retención del material educativo.
 * Participación por Curso y Carga Docente: Monitoreo del balance operativo entre la cantidad de alumnos matriculados frente al profesor asignado para garantizar la calidad del acompañamiento académico.
-
-```
-
-</details>
 
 ### 🏁 Conclusiones del Proyecto
 
