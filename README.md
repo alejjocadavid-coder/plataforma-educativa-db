@@ -111,7 +111,7 @@ Haz clic en cada sección desplegable para visualizar el código correspondiente
 Estructura física de la base de datos relacional creada y ejecutada de manera exitosa en MySQL Workbench.
 
 <details>
-  <summary>📝 Haz clic aquí para desplegar el Script De Creación de Tablas (DDL) (SQL)</summary>
+  <summary>📝 Haz clic aquí para desplegar el Script De Creación de Tablas (SQL)</summary>
 
 ```sql
 CREATE DATABASE IF NOT EXISTS plataforma_educativa;
@@ -178,4 +178,4 @@ CREATE TABLE PROGRESO (
 Automatización desarrollada con Faker y mysql-connector-python para poblar el sistema con 1,500 estudiantes bajo validaciones de calidad de datos.
 
 <details>
-  <summary>📝 Haz clic aquí para desplegar el Script DDL Completo (SQL)</summary>
+  <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
