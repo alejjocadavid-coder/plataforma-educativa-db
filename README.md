@@ -170,7 +170,9 @@ CREATE TABLE PROGRESO (
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
 
+```
 
+</details>
 
 ### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
 Automatización desarrollada con Faker y mysql-connector-python para poblar el sistema con 1,500 estudiantes bajo validaciones de calidad de datos.
@@ -212,6 +214,12 @@ print("¡Carga masiva finalizada con éxito!")
 ```
 
 </details>
+
+### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
+Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
+
+<details>
+  <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
 
 ### 📊 3. Inserciones Base de Control (DML SQL)
 Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
