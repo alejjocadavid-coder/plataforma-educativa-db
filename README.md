@@ -39,7 +39,7 @@ Para garantizar un enfoque 100% centrado en la analítica educativa, se han apli
 
 ---
 
-## 🎨 1. Estrategia de Diseño: Categorización Semántica
+## 🎨 Estrategia de Diseño: Categorización Semántica
 
 Para optimizar la interpretación técnica y funcional del modelo, se ha implementado una codificación visual por colores en el diagrama institucional:
 
@@ -169,6 +169,10 @@ CREATE TABLE PROGRESO (
     CONSTRAINT chk_porcentaje CHECK (porcentaje_progreso BETWEEN 0.00 AND 100.00),
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
+
+```
+
+</details>
 
 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
 Automatización desarrollada con Faker y mysql-connector-python para poblar el sistema con 1,500 estudiantes bajo validaciones de calidad de datos.
