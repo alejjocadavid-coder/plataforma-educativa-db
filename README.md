@@ -177,8 +177,8 @@ CREATE TABLE PROGRESO (
 ### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
 Automatización desarrollada con Faker y mysql-connector-python para poblar el sistema con 1,500 estudiantes bajo validaciones de calidad de datos.
 
-
-  <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
+<details>
+<summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
 
 ```python
 import mysql.connector
