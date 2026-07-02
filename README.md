@@ -215,6 +215,22 @@ print("¡Carga masiva finalizada con éxito!")
 
 </details>
 
+<br>
+
+<table>
+  <tr>
+    <td width="50%" valign="top" style="border: 1px solid #e1e4e8; border-radius: 6px; padding: 16px; background-color: #f6f8fa;">
+      <h4 style="color: #22863a; margin-top: 0;">🧪 1,500 Alumnos Únicos</h4>
+      <p style="font-size: 14px; color: #24292e;">Se inyectaron de forma masiva registros de estudiantes utilizando un algoritmo generador de identidades. Los correos electrónicos se indexaron bajo una máscara limpia y estructurada, lo que permitió validar en tiempo de ejecución el comportamiento real, el rendimiento y el blindaje de la restricción <code>UNIQUE</code> en la base de datos.</p>
+    </td>
+    <td width="50%" valign="top" style="border: 1px solid #e1e4e8; border-radius: 6px; padding: 16px; background-color: #f6f8fa;">
+      <h4 style="color: #22863a; margin-top: 0;">📈 24,000+ Filas de Trazabilidad</h4>
+      <p style="font-size: 14px; color: #24292e;">Para simular un entorno de alta concurrencia y comportamiento histórico realista, se pobló la tabla <code>PROGRESO</code> con más de 24,000 registros dinámicos. Esto permite que las métricas de negocio reflejen estados de avance variados (No iniciado, En curso, Completado) y distribuciones porcentuales aleatorias pero controladas.</p>
+    </td>
+  </tr>
+</table>
+
+<br>
 ### 📊 3. Inserciones Base de Control (DML SQL)
 Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
 
