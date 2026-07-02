@@ -300,6 +300,91 @@ INSERT INTO PROGRESO (id_inscripcion, porcentaje_progreso, estado) VALUES
 
 </details>
 
+### 📊 4. Consultas Analíticas de Negocio (SQL Avanzado)
+Para garantizar la toma de decisiones estratégicas dentro de la plataforma educativa, se diseñaron e implementaron consultas de agregación y análisis de datos enfocadas en métricas de rendimiento y comportamiento estudiantil.
+
+
+<details>
+<summary>📝 Haz clic aquí para desplegar el Script de Consultas Analíticas de Negocio (SQL Avanzado)</summary>
+
+```sql
+USE plataforma_educativa;
+
+-- ==============================================================================
+-- 1. RESUMEN EJECUTIVO: Métricas clave de rendimiento por oferta académica
+-- ==============================================================================
+-- Extrae el total de estudiantes matriculados reales y el porcentaje de progreso 
+-- promedio general de cada curso para el reporte gerencial.
+
+SELECT 
+    c.nombre_curso AS 'Curso Ofertado',
+    COUNT(DISTINCT i.id_estudiante) AS 'Total Estudiantes Matriculados',
+    ROUND(AVG(p.porcentaje_progreso), 2) AS 'Progreso Promedio General (%)'
+FROM CURSOS c
+LEFT JOIN INSCRIPCIONES i ON c.id_curso = i.id_curso
+LEFT JOIN PROGRESO p ON i.id_inscripcion = p.id_inscripcion
+GROUP BY c.id_curso, c.nombre_curso
+ORDER BY  `Total Estudiantes Matriculados` DESC;
+
+
+-- ==============================================================================
+-- 2. EMBUDO DE CONVERSIÓN: Distribución de estados por curso (Para Power BI)
+-- ==============================================================================
+-- Permite estructurar gráficos de barras o donas en el tablero, midiendo cuántos 
+-- hitos están en "No iniciado", "En curso" o "Completado".
+
+SELECT 
+    c.nombre_curso AS 'Curso',
+    p.estado AS 'Estado del Progreso',
+    COUNT(*) AS 'Cantidad de Hitos Registrados',
+    ROUND((COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(PARTITION BY c.id_curso)), 2) AS 'Porcentaje de Representación (%)'
+FROM CURSOS c
+JOIN INSCRIPCIONES i ON c.id_curso = i.id_curso
+JOIN PROGRESO p ON i.id_inscripcion = p.id_inscripcion
+GROUP BY c.id_curso, c.nombre_curso, p.estado
+ORDER BY c.nombre_curso, `Cantidad de Hitos Registrados` DESC;
+
+
+-- ==============================================================================
+-- 3. CUADRO DE HONOR: Top 10 Estudiantes con Mayor Rendimiento Acumulado
+-- ==============================================================================
+-- Identifica de forma proactiva a los alumnos con mejores métricas de avance 
+-- a lo largo de toda su ruta de aprendizaje activa.
+
+SELECT 
+    e.id_estudiante AS 'ID Alumno',
+    e.nombre AS 'Estudiante',
+    COUNT(DISTINCT i.id_curso) AS 'Cursos Inscritos',
+    ROUND(AVG(p.porcentaje_progreso), 2) AS 'Promedio de Progreso General (%)'
+FROM ESTUDIANTES e
+JOIN INSCRIPCIONES i ON e.id_estudiante = i.id_estudiante
+JOIN PROGRESO p ON i.id_inscripcion = p.id_inscripcion
+GROUP BY e.id_estudiante, e.nombre
+ORDER BY `Promedio de Progreso General (%)` DESC
+LIMIT 10;
+
+
+-- ==============================================================================
+-- 4. CONTROL DE RETENCIÓN: Alumnos en riesgo (Progreso bajo en cursos activos)
+-- ==============================================================================
+-- Alerta temprana para el equipo de tutorías: Estudiantes con un avance promedio 
+-- inferior al 25% a pesar de estar matriculados.
+
+SELECT 
+    e.nombre AS 'Estudiante',
+    e.email AS 'Correo de Contacto',
+    c.nombre_curso AS 'Curso',
+    ROUND(AVG(p.porcentaje_progreso), 2) AS 'Progreso Crítico (%)'
+FROM ESTUDIANTES e
+JOIN INSCRIPCIONES i ON e.id_estudiante = i.id_estudiante
+JOIN CURSOS c ON i.id_curso = c.id_curso
+JOIN PROGRESO p ON i.id_inscripcion = p.id_inscripcion
+GROUP BY e.id_estudiante, e.nombre, e.email, c.nombre_curso
+HAVING `Progreso Crítico (%)` < 25.00
+ORDER BY `Progreso Crítico (%)` ASC
+LIMIT 15;
+
+
 
 ### 📈 Objetivo Analítico (Explotación del Dato)
 El diseño e implementación física del modelo permite dar respuesta directa a las siguientes necesidades de analítica empresarial en tableros de Business Intelligence (Power BI):
@@ -312,7 +397,9 @@ Tasa de Finalización: Métrica estratégica de negocio para evaluar la efectivi
 
 Participación por Curso y Carga Docente: Monitoreo del balance operativo entre la cantidad de alumnos matriculados frente al profesor asignado para garantizar la calidad del acompañamiento académico.
 
----
+```
+
+</details>
 
 ### 🏁 Conclusiones del Proyecto
 
