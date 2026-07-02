@@ -231,6 +231,7 @@ print("¡Carga masiva finalizada con éxito!")
 </table>
 
 <br>
+
 ### 📊 3. Inserciones Base de Control (DML SQL)
 Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
 
