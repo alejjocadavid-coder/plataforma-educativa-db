@@ -389,13 +389,10 @@ LIMIT 15;
 ### 📈 Objetivo Analítico (Explotación del Dato)
 El diseño e implementación física del modelo permite dar respuesta directa a las siguientes necesidades de analítica empresarial en tableros de Business Intelligence (Power BI):
 
-Progreso de los Estudiantes: Cálculo automatizado de la tasa de completitud por módulo mediante agregaciones de la entidad PROGRESO.
-
-Cursos más Activos: Identificación de tendencias y demanda comercial contabilizando el volumen de registros históricos almacenados en la tabla INSCRIPCIONES.
-
-Tasa de Finalización: Métrica estratégica de negocio para evaluar la efectividad y retención del material educativo.
-
-Participación por Curso y Carga Docente: Monitoreo del balance operativo entre la cantidad de alumnos matriculados frente al profesor asignado para garantizar la calidad del acompañamiento académico.
+* Progreso de los Estudiantes: Cálculo automatizado de la tasa de completitud por módulo mediante agregaciones de la entidad PROGRESO.
+* Cursos más Activos: Identificación de tendencias y demanda comercial contabilizando el volumen de registros históricos almacenados en la tabla INSCRIPCIONES.
+* Tasa de Finalización: Métrica estratégica de negocio para evaluar la efectividad y retención del material educativo.
+* Participación por Curso y Carga Docente: Monitoreo del balance operativo entre la cantidad de alumnos matriculados frente al profesor asignado para garantizar la calidad del acompañamiento académico.
 
 ```
 
