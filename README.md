@@ -247,3 +247,25 @@ INSERT INTO PROGRESO (id_inscripcion, porcentaje_progreso, estado) VALUES
 ```
 
 </details>
+
+
+### 📈 Objetivo Analítico (Explotación del Dato)
+El diseño e implementación física del modelo permite dar respuesta directa a las siguientes necesidades de analítica empresarial en tableros de Business Intelligence (Power BI):
+
+Progreso de los Estudiantes: Cálculo automatizado de la tasa de completitud por módulo mediante agregaciones de la entidad PROGRESO.
+
+Cursos más Activos: Identificación de tendencias y demanda comercial contabilizando el volumen de registros históricos almacenados en la tabla INSCRIPCIONES.
+
+Tasa de Finalización: Métrica estratégica de negocio para evaluar la efectividad y retención del material educativo.
+
+Participación por Curso y Carga Docente: Monitoreo del balance operativo entre la cantidad de alumnos matriculados frente al profesor asignado para garantizar la calidad del acompañamiento académico.
+
+---
+
+##🏁 Conclusiones del Proyecto
+
+Integridad Absoluta: La normalización estricta en Tercera Forma Normal (3FN) mitiga redundancias y resguarda la base transaccional contra anomalías operativas de inserción, actualización o borrado.
+
+Visibilidad de Negocio Granular: La capa analítica de progreso proporciona la infraestructura idónea para rastrear el éxito y estancamiento del estudiante en tiempo real.
+
+Escalabilidad Tecnológica: El ecosistema físico se encuentra completamente optimizado para su integración directa con pasarelas ETL, visualizadores analíticos avanzados en Power BI y modelos algorítmicos predictivos de deserción.
