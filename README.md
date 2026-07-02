@@ -179,3 +179,45 @@ Automatización desarrollada con Faker y mysql-connector-python para poblar el s
 
 <details>
   <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
+
+import mysql.connector
+from faker import Faker
+import random
+
+# 1. Conexión con el motor de base de datos local
+conexion = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="Alejjo2026",
+    database="plataforma_educativa"
+)
+cursor = conexion.cursor()
+fake = Faker()
+
+print("Generando e insertando 1,500 estudiantes de forma masiva...")
+
+# 2. Inserción masiva controlada
+for _ in range(1500):
+    nombre = fake.name()
+    email = fake.unique.email()
+    fecha_registro = fake.date_this_year()
+    
+    query = "INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES (%s, %s, %s)"
+    valores = (nombre, email, fecha_registro)
+    cursor.execute(query, valores)
+
+conexion.commit()
+cursor.close()
+conexion.close()
+print("¡Carga masiva finalizada con éxito!")
+
+
+```
+
+</details>
+
+### 📊 3. Inserciones Base de Control (DML SQL)
+Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
+
+<details>
+  <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
