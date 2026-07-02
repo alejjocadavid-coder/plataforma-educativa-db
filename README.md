@@ -111,7 +111,7 @@ Haz clic en cada sección desplegable para visualizar el código correspondiente
 Estructura física de la base de datos relacional creada y ejecutada de manera exitosa en MySQL Workbench.
 
 <details>
-  <summary>📝 Haz clic aquí para desplegar el Script DDL Completo (SQL)</summary>
+  <summary>📝 Haz clic aquí para desplegar el Script De Creación de Tablas (DDL) (SQL)</summary>
 
 ```sql
 CREATE DATABASE IF NOT EXISTS plataforma_educativa;
@@ -174,80 +174,8 @@ CREATE TABLE PROGRESO (
 
 </details>
 
-📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
+### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
 Automatización desarrollada con Faker y mysql-connector-python para poblar el sistema con 1,500 estudiantes bajo validaciones de calidad de datos.
 
-import mysql.connector
-from faker import Faker
-import random
-
-# 1. Conexión con el motor de base de datos local
-conexion = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Alejjo2026",
-    database="plataforma_educativa"
-)
-cursor = conexion.cursor()
-fake = Faker()
-
-print("Generando e insertando 1,500 estudiantes de forma masiva...")
-
-# 2. Inserción masiva controlada
-for _ in range(1500):
-    nombre = fake.name()
-    email = fake.unique.email()
-    fecha_registro = fake.date_this_year()
-    
-    query = "INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES (%s, %s, %s)"
-    valores = (nombre, email, fecha_registro)
-    cursor.execute(query, valores)
-
-conexion.commit()
-cursor.close()
-conexion.close()
-print("¡Carga masiva finalizada con éxito!")
-
-📊 3. Inserciones Base de Control (DML SQL)
-Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
-
--- POBLACIÓN DE CONTROL INICIAL
-INSERT INTO DOCENTES (nombre, especialidad) VALUES 
-('Ingri Johana Rolón', 'Bases de Datos Relacionales'), 
-('Alejandro Cadavid', 'Ingeniería de Datos'),
-('Luz Angelith Espinosa', 'Inteligencia de Negocios');
-
-INSERT INTO CURSOS (nombre_curso, descripcion, id_docente) VALUES
-('Bootcamp de Analítica de Datos', 'Curso intensivo de SQL, Python y Power BI', 2),
-('Inteligencia de Negocios Avanzada', 'Modelado dimensional y arquitectura DAX', 3);
-
-INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES 
-('Carlos Mendoza', 'carlos.mendoza@fakermail.com', '2026-01-15'), 
-('Diana Arbelaez', 'diana.arbelaez@fakermail.com', '2026-02-10');
-
-INSERT INTO INSCRIPCIONES (id_estudiante, id_curso, fecha_inscripcion) VALUES 
-(1, 1, '2026-01-16'),
-(2, 2, '2026-02-11');
-
-INSERT INTO PROGRESO (id_inscripcion, porcentaje_progreso, estado) VALUES
-(1, 0.00, 'No iniciado'),
-(2, 15.50, 'En curso');
-
-📈 Objetivo Analítico (Explotación del Dato)
-El diseño e implementación física del modelo permite dar respuesta directa a las siguientes necesidades de analítica empresarial en tableros de Business Intelligence (Power BI):
-
-Progreso de los Estudiantes: Cálculo automatizado de la tasa de completitud por módulo mediante agregaciones de la entidad PROGRESO.
-
-Cursos más Activos: Identificación de tendencias y demanda comercial contabilizando el volumen de registros históricos almacenados en la tabla INSCRIPCIONES.
-
-Tasa de Finalización: Métrica estratégica de negocio para evaluar la efectividad y retención del material educativo.
-
-Participación por Curso y Carga Docente: Monitoreo del balance operativo entre la cantidad de alumnos matriculados frente al profesor asignado para garantizar la calidad del acompañamiento académico.
-
-🏁 Conclusiones del Proyecto
-Integridad Absoluta: La normalización estricta en Tercera Forma Normal (3FN) mitiga redundancias y resguarda la base transaccional contra anomalías operativas de inserción, actualización o borrado.
-
-Visibilidad de Negocio Granular: La capa analítica de progreso proporciona la infraestructura idónea para rastrear el éxito y estancamiento del estudiante en tiempo real.
-
-Escalabilidad Tecnológica: El ecosistema físico se encuentra completamente optimizado para su integración directa con pasarelas ETL, visualizadores analíticos avanzados en Power BI y modelos algorítmicos predictivos de deserción.
-
+<details>
+  <summary>📝 Haz clic aquí para desplegar el Script DDL Completo (SQL)</summary>
