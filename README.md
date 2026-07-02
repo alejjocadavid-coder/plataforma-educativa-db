@@ -210,7 +210,6 @@ conexion.commit()
 cursor.close()
 conexion.close()
 print("¡Carga masiva finalizada con éxito!")
-);
 
 ```
 
