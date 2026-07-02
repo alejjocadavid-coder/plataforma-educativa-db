@@ -262,7 +262,7 @@ Participación por Curso y Carga Docente: Monitoreo del balance operativo entre 
 
 ---
 
-##🏁 Conclusiones del Proyecto
+### 🏁 Conclusiones del Proyecto
 
 Integridad Absoluta: La normalización estricta en Tercera Forma Normal (3FN) mitiga redundancias y resguarda la base transaccional contra anomalías operativas de inserción, actualización o borrado.
 
