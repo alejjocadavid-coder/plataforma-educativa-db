@@ -177,7 +177,7 @@ CREATE TABLE PROGRESO (
 ### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
 Automatización desarrollada con Faker y mysql-connector-python para poblar el sistema con 1,500 estudiantes bajo validaciones de calidad de datos.
 
-<details>
+
   <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
 
 import mysql.connector
@@ -211,9 +211,6 @@ cursor.close()
 conexion.close()
 print("¡Carga masiva finalizada con éxito!")
 
-```
-
-</details>
 
 ### 📊 3. Inserciones Base de Control (DML SQL)
 Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
