@@ -110,8 +110,8 @@ Haz clic en cada sección desplegable para visualizar el código correspondiente
 
 Estructura física de la base de datos relacional creada y ejecutada de manera exitosa en MySQL Workbench.
 
-
-  <summary>📝 Haz clic aquí para desplegar el Script De Creación de Tablas (SQL)</summary>
+<details>
+<summary>📝 Haz clic aquí para desplegar el Script De Creación de Tablas (SQL)</summary>
 
 ```sql
 CREATE DATABASE IF NOT EXISTS plataforma_educativa;
