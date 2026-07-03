@@ -414,30 +414,8 @@ En esta fase final, transformamos las más de 24,000 filas de trazabilidad anal�
 
 ### 🖥️ 1. Dashboard Interactivo (Power BI)
 
-> 💡 **Nota de entrega:** *(Una vez diseñes tu tablero en Power BI, puedes tomarle una captura de pantalla, subirla a la carpeta de tu repositorio y reemplazar este enlace para que la imagen se renderice directamente aquí).*
+> 💡 **Nota de entrega:** *(En Construcción diseño tablero en Power BI, captura de pantalla).*
 
-![Diseño del Dashboard Analítico](https://via.placeholder.com/1000x500/22863a/ffffff?text=Captura+de+Pantalla+de+tu+Dashboard+en+Power+BI)
+![Diseño del Dashboard Analítico](Construcción)
 
-El tablero visual interactivo se estructuró bajo dos enfoques clave de negocio:
-*   **Pestaña Gerencial (Executive Summary):** Resumen macro de alumnos únicos activos, volumen total de matrículas operativas y el embudo de conversión según los estados del progreso de aprendizaje.
-*   **Pestaña de Retención y Riesgo:** Monitoreo automatizado con alertas visuales para la identificación temprana de deserción estudiantil y el cuadro de honor analítico.
 
----
-
-### 📄 2. Informe de Análisis Estratégico
-
-#### 🏛️ Contexto del Análisis
-El presente análisis evalúa el comportamiento de consumo académico, el avance de módulos y el riesgo latente de deserción dentro de la plataforma e-learning. Con una base consolidada de **1,500 estudiantes** y un volumen histórico masivo de **24,000 registros de progreso**, este informe provee insights accionables para la optimización de tutorías y la expansión de la oferta académica.
-
-#### 📈 Principales Hallazgos e Interpretación
-
-| Dimensión Analizada | Hallazgo Clave (Métrica) | Interpretación del Negocio |
-| :--- | :--- | :--- |
-| **Volumetría de Carga** | 4 cursos activos con 6,000 matrículas totales. | Existe una tasa de absorción del 100% de la oferta académica actual; cada estudiante está explorando múltiples rutas simultáneamente. |
-| **Embudo de Progreso** | Distribución homogénea en estados de avance. | El volumen masivo en estado "En Curso" valida una alta interactividad diaria, requiriendo estabilidad en la infraestructura tecnológica por alta concurrencia. |
-| **Alertas de Retención** | Identificación de alumnos con avance < 25%. | Se detectó un segmento crítico de estudiantes estancados en los primeros módulos, lo que representa un riesgo inminente de abandono de la plataforma. |
-
-#### 💡 Conclusiones y Recomendaciones (Enfoque en Toma de Decisiones)
-
-*   **Estrategia de Retención Temprana (Mitigación del Riesgo):** Se recomienda utilizar de manera operativa el *Panel de Alertas de Progreso Crítico* para automatizar el envío de correos electrónicos motivacionales y agendar tutorías prioritarias con los alumnos estancados antes de que abandonen la plataforma de manera definitiva.
-*   **Escalabilidad y Expansión del Negocio:** Dado el éxito en la tasa de matriculación por alumno (promedio de 4 cursos inscritos por usuario), la mesa directiva debe planificar la apertura de rutas avanzadas o especializaciones complementarias para capitalizar el interés continuo de la comunidad activa.
