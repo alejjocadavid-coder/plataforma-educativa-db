@@ -1,4 +1,5 @@
-# 🎓 Proyecto 4 — Plataforma Educativa (E-Learning)
+# 🎓 Proyecto 4 — EduAnalytics Platform
+**Inteligencia de Negocios aplicada a la retención y progresión académica en entornos virtuales.**
 ### 🚀 BeTek / Makaia — Misión 15 (Análisis de Datos)
 **Año:** 2026
 
