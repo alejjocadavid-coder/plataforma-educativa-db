@@ -255,7 +255,7 @@ print("¡Carga masiva finalizada con éxito!")
 
 <table width="100%" border="0" cellpadding="0" cellspacing="12" style="border-collapse: separate; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;">
   <tr>
-    <td width="50%" valign="top" style="border: 1px solid #d0f5fc; border-radius: 8px; padding: 20px; background-color: #f1fbfd;">
+    <td width="50%" valign="top" style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 20px; background-color: #f6f8fa;">
       <h4 style="color: #1e7e34; margin-top: 0; margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
         <span>🧪</span> 1,500 Estudiantes Únicos
       </h4>
@@ -263,7 +263,7 @@ print("¡Carga masiva finalizada con éxito!")
         Se inyectaron de forma masiva registros de estudiantes utilizando un algoritmo generador de identidades. Los correos electrónicos se indexaron bajo una máscara limpia y estructurada, lo que permitió validar en tiempo de ejecución el comportamiento real, el rendimiento y el blindaje de la restricción UNIQUE en la base de datos.
       </p>
     </td>
-    <td width="50%" valign="top" style="border: 1px solid #e2f9f3; border-radius: 8px; padding: 20px; background-color: #f4fdfa;">
+    <td width="50%" valign="top" style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 20px; background-color: #f6f8fa;">
       <h4 style="color: #1e7e34; margin-top: 0; margin-bottom: 12px; font-size: 16px; display: flex; align-items: center; gap: 8px;">
         <span>📊</span> 24,000+ Filas de Trazabilidad
       </h4>
@@ -274,6 +274,11 @@ print("¡Carga masiva finalizada con éxito!")
   </tr>
 </table>
 
+<div style="margin: 12px; border-left: 4px solid #e67e22; border-radius: 4px; padding: 16px 20px; background-color: #fff9f2; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; line-height: 1.6;">
+  <p style="font-size: 14px; color: #24292e; margin: 0;">
+    <strong style="color: #24292e;">Coherencia Temporal Blindada:</strong> El script lógico de generación matemática restringe y gobierna las marcas de tiempo. Mediante validaciones condicionales, se asegura que ninguna fecha en las tablas transaccionales de INSCRIPCIONES o en los logs de PROGRESO sea menor o anterior a la fecha de registro inicial (fecha_registro) del estudiante en el ecosistema.
+  </p>
+</div>
 <br>
 
 ### 📊 3. Inserciones Base de Control (DML SQL)
