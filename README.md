@@ -256,12 +256,12 @@ print("¡Carga masiva finalizada con éxito!")
 <table>
   <tr>
     <td width="50%" valign="top" style="border: 1px solid #e1e4e8; border-radius: 6px; padding: 16px; background-color: #f6f8fa;">
-      <h4 style="color: #22863a; margin-top: 0;">🧪 1,500 Alumnos Únicos</h4>
-      <p style="font-size: 14px; color: #24292e;">Se inyectaron de forma masiva registros de estudiantes utilizando un algoritmo generador de identidades. Los correos electrónicos se indexaron bajo una máscara limpia y estructurada, lo que permitió validar en tiempo de ejecución el comportamiento real, el rendimiento y el blindaje de la restricción <code>UNIQUE</code> en la base de datos.</p>
+      <h4 style="color: #22863a; margin-top: 0;">🧪 1,500 Estudiantes Únicos</h4>
+      <p style="font-size: 14px; color: #24292e;">Se inyectaron de forma masiva registros de estudiantes utilizando un algoritmo generador de identidades. Los correos electrónicos se indexaron bajo una máscara limpia y estructurada, lo que permitió validar en tiempo de ejecución el comportamiento real, el rendimiento y el blindaje de la restricción UNIQUE en la base de dato</p>
     </td>
     <td width="50%" valign="top" style="border: 1px solid #e1e4e8; border-radius: 6px; padding: 16px; background-color: #f6f8fa;">
       <h4 style="color: #22863a; margin-top: 0;">📈 24,000+ Filas de Trazabilidad</h4>
-      <p style="font-size: 14px; color: #24292e;">Para simular un entorno de alta concurrencia y comportamiento histórico realista, se pobló la tabla <code>PROGRESO</code> con más de 24,000 registros dinámicos. Esto permite que las métricas de negocio reflejen estados de avance variados (No iniciado, En curso, Completado) y distribuciones porcentuales aleatorias pero controladas.</p>
+      <p style="font-size: 14px; color: #24292e;">Para simular un volumen real de datos masivos y un comportamiento histórico, se pobló la base de datos MySQL con más de 24,000 registros dinámicos de Inscripciones y progerso. Este volumen permite que el tablero de Power BI analice patrones complejos de deserción y estados de avance variados, dejando de ser un análisis manual y reractivos.</p>
     </td>
   </tr>
 </table>
