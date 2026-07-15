@@ -189,7 +189,40 @@ CREATE TABLE progreso (
 
 </details>
 
-### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
+### 📊 3. Inserciones Base de Control (DML SQL)
+Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
+
+<details>
+<summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
+
+```sql
+-- POBLACIÓN DE CONTROL INICIAL
+INSERT INTO DOCENTES (nombre, especialidad) VALUES 
+('Ingri Johana Rolón', 'Bases de Datos Relacionales'), 
+('Alejandro Cadavid', 'Ingeniería de Datos'),
+('Luz Angelith Espinosa', 'Inteligencia de Negocios');
+
+INSERT INTO CURSOS (nombre_curso, descripcion, id_docente) VALUES
+('Bootcamp de Analítica de Datos', 'Curso intensivo de SQL, Python y Power BI', 2),
+('Inteligencia de Negocios Avanzada', 'Modelado dimensional y arquitectura DAX', 3);
+
+INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES 
+('Carlos Mendoza', 'carlos.mendoza@fakermail.com', '2026-01-15'), 
+('Diana Arbelaez', 'diana.arbelaez@fakermail.com', '2026-02-10');
+
+INSERT INTO INSCRIPCIONES (id_estudiante, id_curso, fecha_inscripcion) VALUES 
+(1, 1, '2026-01-16'),
+(2, 2, '2026-02-11');
+
+INSERT INTO PROGRESO (id_inscripcion, porcentaje_progreso, estado) VALUES
+(1, 0.00, 'No iniciado'),
+(2, 15.50, 'En curso');
+
+```
+
+</details>
+
+## 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
 
 Automatización desarrollada con `Faker` y `mysql-connector-python` para poblar el sistema de manera masiva, simulando un entorno real de alta concurrencia con miles de interacciones analíticas.
 
