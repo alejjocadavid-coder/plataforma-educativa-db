@@ -185,5 +185,5 @@ CREATE TABLE progreso (
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
 
-### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
+## 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
 Automatización desarrollada con mysql-connector-python para poblar el sistema de manera masiva, mapeando de forma íntegra las dependencias de los módulos y simulando un entorno real de alta concurrencia.
