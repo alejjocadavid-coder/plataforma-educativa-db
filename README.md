@@ -187,7 +187,7 @@ CREATE TABLE progreso (
 
 
 55555555555555555555555555555555555555555555555555555
-# 🎓 Proyecto 4 — EduAnalytics Platform
+# 🎓 Proyecto 4 — EduAnalytics Platform COPIA
 **Inteligencia de Negocios aplicada a la retención y progresión académica en entornos virtuales.**
 ### 🚀 BeTek / Makaia — Misión 15 (Análisis de Datos)
 **Año:** 2026
