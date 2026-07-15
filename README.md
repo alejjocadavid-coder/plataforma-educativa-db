@@ -185,7 +185,8 @@ CREATE TABLE progreso (
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 );
 
----
+---```
+
 
 </details>
 
