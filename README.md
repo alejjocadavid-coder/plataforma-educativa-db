@@ -311,9 +311,13 @@ INSERT INTO DOCENTES (nombre, especialidad) VALUES
 ('Alejandro Cadavid', 'Ingeniería de Datos'),
 ('Luz Angelith Espinosa', 'Inteligencia de Negocios');
 
-INSERT INTO CURSOS (nombre_curso, descripcion, id_docente) VALUES
-('Bootcamp de Analítica de Datos', 'Curso intensivo de SQL, Python y Power BI', 2),
-('Inteligencia de Negocios Avanzada', 'Modelado dimensional y arquitectura DAX', 3);
+INSERT INTO CURSOS (nombre_curso, descripcion) VALUES
+('Bootcamp de Analítica de Datos', 'Curso intensivo de SQL, Python y Power BI'),
+('Inteligencia de Negocios Avanzada', 'Modelado dimensional y arquitectura DAX');
+
+INSERT INTO curso_docente (id_curso, id_docente) VALUES 
+(1, 2), -- Curso 1 asignado al Docente 2
+(2, 3); -- Curso 2 asignado al Docente 3
 
 INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES 
 ('Carlos Mendoza', 'carlos.mendoza@fakermail.com', '2026-01-15'), 
