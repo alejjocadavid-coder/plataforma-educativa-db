@@ -5,3 +5,12 @@ venv/
 *.log
 .DS_Store
 Thumbs.db
+
+# Base de datos y credenciales
+.env
+*.sql.user
+
+# Power BI (Configuraciones de usuario y temporales)
+*.pbix.user
+*.pbit.user
+*.pbix.datasources
