@@ -211,7 +211,7 @@ import random
 db_config = {
     'host': 'localhost',
     'user': 'root',
-    'password': 'tu_password',
+    'password': 'Alejjo2026',
     'database': 'plataforma_educativa'
 }
 
