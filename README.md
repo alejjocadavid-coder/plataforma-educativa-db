@@ -121,6 +121,8 @@ Estructura física relacional optimizada para auditoría histórica masiva, crea
 
 ```sql
 CREATE DATABASE IF NOT EXISTS plataforma_educativa;
+USE plataforma_educativ```sql
+CREATE DATABASE IF NOT EXISTS plataforma_educativa;
 USE plataforma_educativa;
 
 -- CAPA 1: MAESTRA CENTRAL
@@ -129,20 +131,19 @@ CREATE TABLE estudiantes (
     nombre VARCHAR(100) NOT NULL,
     email VARCHAR(150) UNIQUE NOT NULL,
     fecha_registro DATE NOT NULL
-);
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 CREATE TABLE docentes (
     id_docente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     especialidad VARCHAR(100)
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- CAPA 2: CATÁLOGO ACADÉMICO Y ASIGNACIÓN
 CREATE TABLE cursos (
     id_curso INT AUTO_INCREMENT PRIMARY KEY,
     nombre_curso VARCHAR(200) NOT NULL,
     descripcion TEXT
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE curso_docente (
     id_curso INT,
@@ -150,7 +151,7 @@ CREATE TABLE curso_docente (
     PRIMARY KEY (id_curso, id_docente),
     FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE,
     FOREIGN KEY (id_docente) REFERENCES docentes(id_docente) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE modulos (
     id_modulo INT AUTO_INCREMENT PRIMARY KEY,
@@ -158,19 +159,19 @@ CREATE TABLE modulos (
     nombre_modulo VARCHAR(200) NOT NULL,
     contenido TEXT,
     FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE CASCADE
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- CAPA 3: TRANSACCIONAL Y SEGUIMIENTO HISTÓRICO
 CREATE TABLE inscripciones (
     id_inscripcion INT AUTO_INCREMENT PRIMARY KEY,
     id_estudiante INT NOT NULL,
     id_curso INT NOT NULL,
-    fecha_inscripcion DATE DEFAULT (CURRENT_DATE),
+    fecha_inscripcion DATE DEFAULT (CURRENT_DATE()),
     estado VARCHAR(20) DEFAULT 'Activa',
     FOREIGN KEY (id_estudiante) REFERENCES estudiantes(id_estudiante) ON DELETE RESTRICT,
     FOREIGN KEY (id_curso) REFERENCES cursos(id_curso) ON DELETE RESTRICT,
-    CONSTRAINT chk_estado_insc CHECK (estado IN ('Activa', 'Inactiva'))
-);
+    CONSTRAINT chk_estado_insc CHECK (estado IN ('Activa', 'Inactiva', 'Completada'))
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE progreso (
     id_progreso INT AUTO_INCREMENT PRIMARY KEY,
@@ -180,10 +181,10 @@ CREATE TABLE progreso (
     estado VARCHAR(20) DEFAULT 'No iniciado',
     fecha_actualizacion DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (id_inscripcion) REFERENCES inscripciones(id_inscripcion) ON DELETE CASCADE,
-    FOREIGN KEY (id_modulo) REFERENCES modulos(id_modulo) ON DELETE RESTRICT,
+    FOREIGN KEY (id_modulo) REFERENCES modulos(id_modulo) ON DELETE CASCADE,
     CONSTRAINT chk_porcentaje CHECK (porcentaje_progreso BETWEEN 0.00 AND 100.00),
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
-);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
 
@@ -191,7 +192,7 @@ CREATE TABLE progreso (
 
 </details>
 
-## 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
+## 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva) (poblar_datos.py)
 
 Automatización desarrollada con `Faker` y `mysql-connector-python` para poblar el sistema de manera masiva, simulando un entorno real de alta concurrencia con miles de interacciones analíticas.
 
@@ -200,69 +201,108 @@ Automatización desarrollada con `Faker` y `mysql-connector-python` para poblar 
 
 ```python
 import mysql.connector
+from mysql.connector import Error
 from faker import Faker
 import random
+from datetime import datetime, timedelta
 
-# 1. Conexión con el motor de base de datos local
-conexion = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="Alejjo2026",
-    database="plataforma_educativa"
-)
-cursor = conexion.cursor()
-fake = Faker()
+db_config = {
+    'host': 'localhost',
+    'user': 'root',
+    'password': 'Alejjo2026',
+    'database': 'plataforma_educativa'
+}
 
-print("🚀 Iniciando simulación de entorno de alta concurrencia...")
+fake = Faker('es_CO')
+Faker.seed(42)
+random.seed(42)
 
-# [FASE 1] Ingesta masiva de 1,500 estudiantes únicos
-print("📥 Insertando 1,500 estudiantes...")
-id_estudiantes = []
-for _ in range(1500):
-    nombre = fake.name()
-    email = fake.unique.email()
-    fecha_registro = fake.date_this_year()
+try:
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+    print("Conexión exitosa para carga masiva.")
+
+    # 1. Generar 1.500 Estudiantes
+    print("Generando estudiantes...")
+    estudiantes_data = []
+    fin_fecha = datetime.now()
+    inicio_fecha = fin_fecha - timedelta(days=365)
+
+    for i in range(1, 1501):
+        nombre = fake.name()
+        email = fake.unique.email()
+        fecha_reg = fake.date_time_between(start_date=inicio_fecha, end_date=fin_fecha).date()
+        estudiantes_data.append((i, nombre, email, fecha_reg))
+
+    query_estudiantes = "INSERT INTO estudiantes VALUES (%s, %s, %s, %s)"
+    cursor.executemany(query_estudiantes, estudiantes_data)
+    connection.commit()
+
+    # 2. Consultar catálogo
+    cursor.execute("SELECT id_curso FROM cursos")
+    cursos = [row[0] for row in cursor.fetchall()]
+
+    cursor.execute("SELECT id_modulo, id_curso FROM modulos")
+    modulos_por_curso = {}
+    for id_modulo, id_curso in cursor.fetchall():
+        if id_curso not in modulos_por_curso:
+            modulos_por_curso[id_curso] = []
+        modulos_por_curso[id_curso].append(id_modulo)
+
+    # 3. Generar Inscripciones e Historial lógico (24.000+ filas)
+    print("Generando transacciones y progreso...")
+    inscripciones_data = []
+    progreso_data = []
+    id_inscripcion = 1
+    id_progreso = 1
     
-    query_est = "INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES (%s, %s, %s)"
-    cursor.execute(query_est, (nombre, email, fecha_registro))
-    id_estudiantes.append(cursor.lastrowid)
+    estados_inscripcion = ['Activa', 'Inactiva', 'Completada']
 
-# Buscamos los cursos existentes en la base de datos para asociarlos
-cursor.execute("SELECT id_curso FROM CURSOS")
-cursos_existentes = [fila[0] for fila in cursor.fetchall()]
-
-# [FASE 2] Inscripciones masivas (Matrícula completa en la oferta académica)
-print("🧡 Matriculando estudiantes en la oferta académica...")
-id_inscripciones = []
-for id_est in id_estudiantes:
-    for id_cur in cursos_existentes:
-        query_ins = "INSERT INTO INSCRIPCIONES (id_estudiante, id_curso, fecha_inscripcion, estado) VALUES (%s, %s, %s, 'Activa')"
-        cursor.execute(query_ins, (id_est, id_cur, fake.date_this_year()))
-        id_inscripciones.append(cursor.lastrowid)
-
-# [FASE 3] Generación masiva de registros de trazabilidad en la tabla PROGRESO
-print("🔘 Generando las filas de PROGRESO para los módulos...")
-for id_ins in id_inscripciones:
-    for modulo_n in range(4): # 4 hitos de progreso por cada inscripción operativa
-        porcentaje = round(random.uniform(0.00, 100.00), 2)
+    for id_estudiante, _, _, fecha_reg in estudiantes_data:
+        num_cursos = random.randint(1, 2)
+        cursos_estudiante = random.sample(cursos, min(num_cursos, len(cursos)))
         
-        if porcentaje == 0.00:
-            estado = 'No iniciado'
-        elif porcentaje == 100.00:
-            estado = 'Completado'
-        else:
-            estado = 'En curso'
+        for id_curso in sorted(cursos_estudiante):
+            fecha_inscripcion = fecha_reg + timedelta(days=random.randint(1, 15))
+            estado_insc = random.choices(estados_inscripcion, weights=[75, 10, 15], k=1)[0]
+            inscripciones_data.append((id_inscripcion, id_estudiante, id_curso, fecha_inscripcion, estado_insc))
             
-        query_prog = "INSERT INTO PROGRESO (id_inscripcion, porcentaje_progreso, estado) VALUES (%s, %s, %s)"
-        cursor.execute(query_prog, (id_ins, porcentaje, estado))
+            modulos_asociados = modulos_por_curso.get(id_curso, [])
+            for id_modulo in modulos_asociados:
+                if id_progreso > 24000:
+                    break
+                
+                if estado_insc == 'Completada':
+                    porcentaje = 100.00
+                    estado_prog = 'Completado'
+                elif estado_insc == 'Inactiva':
+                    porcentaje = float(random.randint(0, 20))
+                    estado_prog = 'No iniciado' if porcentaje == 0 else 'En curso'
+                else:
+                    porcentaje = float(random.randint(0, 99))
+                    estado_prog = 'No iniciado' if porcentaje == 0 else 'En curso'
+                
+                fecha_actualizacion = datetime.combine(fecha_inscripcion, datetime.min.time()) + timedelta(days=random.randint(1, 30))
+                progreso_data.append((id_progreso, id_inscripcion, id_modulo, porcentaje, estado_prog, fecha_actualizacion))
+                id_progreso += 1
+            id_inscripcion += 1
 
-conexion.commit()
-print("🏁 ¡Simulación completada con éxito!")
-print(f"📊 Resumen final: {len(id_estudiantes)} Estudiantes | {len(id_inscripciones)} Inscripciones | {len(id_inscripciones) * 4} Filas de progreso.")
+    # Inserciones controladas en lotes
+    cursor.executemany("INSERT INTO inscripciones VALUES (%s, %s, %s, %s, %s)", inscripciones_data)
+    connection.commit()
 
-cursor.close()
-conexion.close()
-print("¡Carga masiva finalizada con éxito!")
+    for i in range(0, len(progreso_data), 5000):
+        cursor.executemany("INSERT INTO progreso VALUES (%s, %s, %s, %s, %s, %s)", progreso_data[i:i+5000])
+        connection.commit()
+
+    print("Carga masiva finalizada con éxito.")
+
+except Error as e:
+    print(f"Error: {e}")
+finally:
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
 
 ```
 
