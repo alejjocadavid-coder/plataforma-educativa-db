@@ -413,7 +413,6 @@ INSERT INTO progreso (id_inscripcion, id_modulo, porcentaje_progreso, estado) VA
 (1, 1, 100.00, 'Completado'), -- Progreso del Estudiante 1 en el Módulo 1 de Python
 (1, 2, 25.00, 'En curso'),     -- Progreso del Estudiante 1 en el Módulo 2 de Python
 (2, 5, 0.00, 'No iniciado');    -- Progreso del Estudiante 2 en el Módulo 1 de Power BI
-
 ```
 
 </details>
