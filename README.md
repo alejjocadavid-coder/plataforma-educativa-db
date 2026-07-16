@@ -529,8 +529,8 @@ En esta fase final, transformamos las más de 24,000 filas de trazabilidad anal�
 
 ---
 
-### 🖥️ 1. Dashboard Interactivo (Power BI)
+### 🖥️ 5. Dashboard Interactivo (Power BI)
 
-> 💡 **Nota de entrega:** *(En Construcción diseño tablero en Power BI, captura de pantalla).*
+A través de la extracción, transformación y modelado de las tablas transaccionales, se ha consolidado el tablero de control directivo. El informe está conectado directamente al motor relacional y proporciona una interfaz fluida e interactiva de KPIs académicos.
 
 ![Diseño del Dashboard Analítico](Construcción)
