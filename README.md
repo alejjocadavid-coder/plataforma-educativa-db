@@ -525,9 +525,12 @@ A través de la extracción, transformación y modelado de las tablas transaccio
 
 ### 🏁 Conclusiones del Proyecto
 
-Integridad Absoluta: La normalización estricta en Tercera Forma Normal (3FN) mitiga redundancias y resguarda la base transaccional contra anomalías operativas de inserción, actualización o borrado.
+De lo reactivo a lo preventivo:
+Transformamos datos históricos en una herramienta operativa que detecta y frena la deserción antes de que ocurra.
 
-Visibilidad de Negocio Granular: La capa analítica de progreso proporciona la infraestructura idónea para rastrear el éxito y estancamiento del estudiante en tiempo real.
+Optimización de recursos:
+Priorizamos la retención sobre la adquisición, protegiendo tanto la sostenibilidad financiera como el éxito académico.
 
-Escalabilidad Tecnológica: El ecosistema físico se encuentra completamente optimizado para su integración directa con pasarelas ETL, visualizadores analíticos avanzados en Power BI y modelos algorítmicos predictivos de deserción.
+Decisiones basadas en evidencia:
+Consolidamos un ecosistema donde la analítica de datos es el motor principal para la toma de decisiones estratégicas.
 
