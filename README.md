@@ -515,6 +515,14 @@ El diseño e implementación física del modelo de EduAnalytics permite dar resp
 * Tasa de Finalización: Métrica estratégica de negocio para evaluar la efectividad y retención del material educativo.
 * Participación por Curso y Carga Docente: Monitoreo del balance operativo entre la cantidad de alumnos matriculados frente al profesor asignado para garantizar la calidad del acompañamiento académico.
 
+## 📝  Dashboard Interactivo (Power BI) 
+
+A través de la extracción, transformación y modelado de las tablas transaccionales, se ha consolidado el tablero de control directivo. El informe está conectado directamente al motor relacional y proporciona una interfaz fluida e interactiva de KPIs académicos.
+
+![Diseño del Dashboard Analítico](Construcción)
+
+---
+
 ### 🏁 Conclusiones del Proyecto
 
 Integridad Absoluta: La normalización estricta en Tercera Forma Normal (3FN) mitiga redundancias y resguarda la base transaccional contra anomalías operativas de inserción, actualización o borrado.
@@ -523,14 +531,3 @@ Visibilidad de Negocio Granular: La capa analítica de progreso proporciona la i
 
 Escalabilidad Tecnológica: El ecosistema físico se encuentra completamente optimizado para su integración directa con pasarelas ETL, visualizadores analíticos avanzados en Power BI y modelos algorítmicos predictivos de deserción.
 
-## 📊 Entregable 3 — Dashboard y Análisis
-
-En esta fase final, transformamos las más de 24,000 filas de trazabilidad analítica procesadas en el motor de base de datos en un entorno visual interactivo diseñado para la toma de decisiones estratégicas.
-
----
-
-### 🖥️ 5. Dashboard Interactivo (Power BI)
-
-A través de la extracción, transformación y modelado de las tablas transaccionales, se ha consolidado el tablero de control directivo. El informe está conectado directamente al motor relacional y proporciona una interfaz fluida e interactiva de KPIs académicos.
-
-![Diseño del Dashboard Analítico](Construcción)
