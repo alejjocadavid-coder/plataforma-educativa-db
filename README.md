@@ -346,30 +346,73 @@ Registros iniciales de validación manual unitaria para verificar herencias lóg
 
 ```sql
 -- POBLACIÓN DE CONTROL INICIAL
-INSERT INTO DOCENTES (nombre, especialidad) VALUES 
-('Ingri Johana Rolón', 'Bases de Datos Relacionales'), 
-('Alejandro Cadavid', 'Ingeniería de Datos'),
-('Luz Angelith Espinosa', 'Inteligencia de Negocios');
 
-INSERT INTO CURSOS (nombre_curso, descripcion) VALUES
-('Bootcamp de Analítica de Datos', 'Curso intensivo de SQL, Python y Power BI'),
-('Inteligencia de Negocios Avanzada', 'Modelado dimensional y arquitectura DAX');
+USE plataforma_educativa;
 
-INSERT INTO curso_docente (id_curso, id_docente) VALUES 
-(1, 2), -- Curso 1 asignado al Docente 2
-(2, 3); -- Curso 2 asignado al Docente 3
+-- =========================================================================
+-- 1. INSERCIÓN DE DOCENTES
+-- =========================================================================
+INSERT INTO docentes (id_docente, nombre, specialty) VALUES
+(1, 'Sonia Rodríguez', 'Ciencia de Datos y Python'),
+(2, 'Carlos Mendoza', 'Visualización de Datos y Business Intelligence'),
+(3, 'Sonia Patricia Cadavid', 'Administración de Proyectos Ágiles'),
+(4, 'Andrés Felipe Restrepo', 'Ciberseguridad y Redes');
 
-INSERT INTO ESTUDIANTES (nombre, email, fecha_registro) VALUES 
-('Carlos Mendoza', 'carlos.mendoza@fakermail.com', '2026-01-15'), 
-('Diana Arbelaez', 'diana.arbelaez@fakermail.com', '2026-02-10');
+-- =========================================================================
+-- 2. INSERCIÓN DE CURSOS
+-- =========================================================================
+INSERT INTO cursos (id_curso, nombre_curso, descripcion) VALUES
+(1, 'Análisis de Datos con Python', 'Aprende a manipular, limpiar y analizar grandes volúmenes de datos usando Pandas, NumPy y Seaborn.'),
+(2, 'Visualización de Datos con Power BI', 'Diseña dashboards interactivos profesionales, modelado de datos en DAX y conexión a bases de datos relacionales.'),
+(3, 'Fundamentos de Ciberseguridad', 'Conceptos clave de seguridad de la información, análisis de vulnerabilidades y defensa de redes.');
 
-INSERT INTO INSCRIPCIONES (id_estudiante, id_curso, fecha_inscripcion) VALUES 
-(1, 1, '2026-01-16'),
-(2, 2, '2026-02-11');
+-- =========================================================================
+-- 3. ASIGNACIÓN DE DOCENTES A CURSOS
+-- =========================================================================
+INSERT INTO curso_docente (id_curso, id_docente) VALUES
+(1, 1), -- Sonia Rodríguez en Python
+(2, 2), -- Carlos Mendoza en Power BI
+(3, 4); -- Andrés Restrepo en Ciberseguridad
 
-INSERT INTO PROGRESO (id_inscripcion, porcentaje_progreso, estado) VALUES
-(1, 0.00, 'No iniciado'),
-(2, 15.50, 'En curso');
+-- =========================================================================
+-- 4. INSERCIÓN DE MÓDULOS POR CURSO (4 Módulos obligatorios por curso)
+-- =========================================================================
+-- Módulos de Python (id_curso = 1)
+INSERT INTO modulos (id_modulo, id_curso, nombre_modulo, contenido) VALUES
+(1, 1, 'Introducción a Python y Sintaxis Básica', 'Variables, tipos de datos, listas y estructuras de control.'),
+(2, 1, 'Estructuras de Datos Avanzadas', 'Diccionarios, tuplas, conjuntos y comprensión de listas.'),
+(3, 1, 'Manipulación de Datos con Pandas', 'Carga de datasets, filtrado, manejo de valores nulos y agrupaciones.'),
+(4, 1, 'Visualización Estática con Matplotlib y Seaborn', 'Creación de gráficos de barras, dispersión, histogramas y personalización.');
+
+-- Módulos de Power BI (id_curso = 2)
+INSERT INTO modulos (id_modulo, id_curso, nombre_modulo, contenido) VALUES
+(5, 2, 'Introducción a Power BI y Power Query', 'Conexión a orígenes de datos, transformación y limpieza de tablas.'),
+(6, 2, 'Modelado de Datos y Relaciones', 'Creación de relaciones, cardinalidad (1 a muchos) y esquemas en estrella.'),
+(7, 2, 'Cálculos Avanzados con DAX', 'Creación de columnas calculadas, medidas y funciones de inteligencia de tiempo.'),
+(8, 2, 'Diseño de Reportes y Dashboards', 'Mejores prácticas de UX/UI, uso de filtros, marcadores y distribución visual.');
+
+-- Módulos de Ciberseguridad (id_curso = 3)
+INSERT INTO modulos (id_modulo, id_curso, nombre_modulo, contenido) VALUES
+(9, 3, 'Introducción a la Seguridad de la Información', 'Principios de confidencialidad, integridad y disponibilidad (CÍA).'),
+(10, 3, 'Seguridad en Redes y Protocolos', 'Análisis de tráfico de red, firewalls, VPNs y configuración segura de routers.'),
+(11, 3, 'Análisis de Vulnerabilidades y Amenazas', 'Identificación de malware, ingeniería social y técnicas comunes de ataque.'),
+(12, 3, 'Mitigación y Respuesta a Incidentes', 'Protocolos de acción ante brechas de seguridad y planes de recuperación.');
+
+-- =========================================================================
+-- 5. PRUEBA TRANSACCIONAL DE CONTROL (Estudiantes, Inscripciones y Progreso)
+-- =========================================================================
+INSERT INTO estudiantes (id_estudiante, nombre, email, fecha_registro) VALUES 
+(1, 'Estudiante de Prueba A', 'prueba.a@eduanalytics.com', '2026-01-15'), 
+(2, 'Estudiante de Prueba B', 'prueba.b@eduanalytics.com', '2026-02-10');
+
+INSERT INTO inscripciones (id_inscripcion, id_estudiante, id_curso, fecha_inscripcion) VALUES 
+(1, 1, 1, '2026-01-16'), -- Inscrito en Python
+(2, 2, 2, '2026-02-11'); -- Inscrito en Power BI
+
+INSERT INTO progreso (id_inscripcion, id_modulo, porcentaje_progreso, estado) VALUES
+(1, 1, 100.00, 'Completado'), -- Progreso del Estudiante 1 en el Módulo 1 de Python
+(1, 2, 25.00, 'En curso'),     -- Progreso del Estudiante 1 en el Módulo 2 de Python
+(2, 5, 0.00, 'No iniciado');    -- Progreso del Estudiante 2 en el Módulo 1 de Power BI
 
 ```
 
