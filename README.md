@@ -29,10 +29,10 @@ Se diseñó y materializó una base de datos para una plataforma de educación e
 ### 🎯 2. Alcance
 El modelo de datos incluye:
 * **Estudiantes:** Información básica y cursos inscritos.
-* **Cursos:** Estructura principal del contenido educativo, compuesta por varios módulos.
-* **Docentes:** Gestión de profesores especializados vinculados a la oferta académica.
-* **Módulos:** Unidades temáticas específicas que conforman la ruta secuencial de un curso.
-* **Progreso:** Registro granular del avance y estado del estudiante por cada módulo izquierdo e individual.
+* **Cursos:** Estructura de contenido por módulos.
+* **Docentes:** Gestión de profesores y especialidades.
+* **Módulos:** Unidades temáticas secuenciales.
+* **Progreso:** Registro granular de avance y estado.
 
 ### ⚠️ 3. Simplificaciones Técnicas Autorizadas
 Para garantizar un enfoque 100% centrado en la analítica educativa, se han aplicado las siguientes exclusiones al diseño:
