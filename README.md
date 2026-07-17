@@ -12,6 +12,14 @@
 * **Luz Angelith Espinosa Mendoza**
 
 ---
+## 🏗️ Estado Actual del Proyecto (Julio 2026)
+Tras el desarrollo técnico, el proyecto **EduAnalytics** cuenta con los siguientes logros:
+* **Estructura de Base de Datos:** Implementada totalmente en MySQL, con integridad referencial verificada.
+* **Volumen de Datos:** Ingesta exitosa de **24,000 registros de progreso**, asegurando coherencia lógica.
+* **Integración BI:** Conexión validada con Power BI; las relaciones de datos permiten interactividad sin errores.
+* **Funcionalidad:** Tablero de control operativo para análisis de deserción y rendimiento en tiempo real.
+
+---
 
 ## 📝 Contexto y Alcance del Sistema
 
