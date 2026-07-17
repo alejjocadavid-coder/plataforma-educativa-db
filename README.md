@@ -27,8 +27,8 @@ Tras el desarrollo técnico, el proyecto **EduAnalytics** cuenta con los siguien
 Se diseñó y materializó una base de datos para una plataforma de educación en línea. El sistema gestiona cursos, módulos, estudiantes, asignación docente y progreso de aprendizaje detallado.
 
 ### 🎯 2. Alcance
-El modelo de datos incluye de forma estricta las siguientes dimensiones de información:
-* **Estudiantes:** Información básica del estudiante y cursos en los que está inscrito.
+El modelo de datos incluye:
+* **Estudiantes:** Información básica y cursos inscritos.
 * **Cursos:** Estructura principal del contenido educativo, compuesta por varios módulos.
 * **Docentes:** Gestión de profesores especializados vinculados a la oferta académica.
 * **Módulos:** Unidades temáticas específicas que conforman la ruta secuencial de un curso.
