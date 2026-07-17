@@ -24,7 +24,7 @@ Tras el desarrollo técnico, el proyecto **EduAnalytics** cuenta con los siguien
 ## 📝 Contexto y Alcance del Sistema
 
 ### 1. Contexto
-Se requiere diseñar una base de datos para una plataforma de educación en línea que ofrece cursos a estudiantes. El sistema debe permitir gestionar cursos, módulos, estudiantes, asignación docente y el progreso de aprendizaje detallado por unidad didáctica.
+Se diseñó y materializó una base de datos para una plataforma de educación en línea. El sistema gestiona cursos, módulos, estudiantes, asignación docente y progreso de aprendizaje detallado.
 
 ### 🎯 2. Alcance
 El modelo de datos incluye de forma estricta las siguientes dimensiones de información:
