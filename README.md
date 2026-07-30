@@ -311,8 +311,6 @@ finally:
 
 ```
 
-</details>
-
 ### 📊 3. Inserciones Base de Control (DML SQL)
 Registros iniciales de validación manual unitaria para verificar herencias lógicas en cascada.
 
