@@ -278,3 +278,67 @@ CREATE TABLE progreso (
     CONSTRAINT chk_porcentaje CHECK (porcentaje_progreso BETWEEN 0.00 AND 100.00),
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+### 📥 2. Script de Inserción de Datos (Python / Ingesta Masiva)
+Inyección masiva automatizada y controlada que restringe temporalmente las marcas de tiempo para asegurar coherencia lógica.
+
+<details>
+<summary>📝 Haz clic aquí para desplegar el Script de Creación de Tablas (SQL)</summary>
+
+```sql
+# Script para forzar la carga de 24,000 registros en PROGRESO
+# Proyecto: EduAnalytics
+# Autor: Alejandro Cadavid Velásquez
+
+import mysql.connector
+from mysql.connector import Error
+import random
+
+db_config = {
+    'host': 'localhost',
+    'user': 'root',
+    'password': 'Alejjo2026',
+    'database': 'plataforma_educativa'
+}
+
+try:
+    connection = mysql.connector.connect(**db_config)
+    cursor = connection.cursor()
+
+    # 1. Obtener todas las inscripciones actuales
+    cursor.execute("SELECT id_inscripcion FROM INSCRIPCIONES")
+    inscripciones = [row[0] for row in cursor.fetchall()]
+    
+    # 2. Obtener todos los módulos
+    cursor.execute("SELECT id_modulo FROM MODULOS")
+    modulos = [row[0] for row in cursor.fetchall()]
+
+    # 3. Forzar 24,000 registros
+    print("Generando 24,000 registros exactos de progreso...")
+    progreso_data = []
+    
+    for i in range(1, 24001):
+        id_insc = random.choice(inscripciones)
+        id_mod = random.choice(modulos)
+        porcentaje = float(random.randint(0, 100))
+        estado = 'Completado' if porcentaje == 100 else 'En curso'
+        
+        progreso_data.append((i, id_insc, id_mod, porcentaje, estado, '2026-07-16'))
+
+    # 4. Insertar en bloques
+    cursor.execute("TRUNCATE TABLE PROGRESO")
+    
+    query = """INSERT INTO PROGRESO (id_progreso, id_inscripcion, id_modulo, porcentaje_progreso, estado, fecha_actualizacion) 
+               VALUES (%s, %s, %s, %s, %s, %s)"""
+    
+    cursor.executemany(query, progreso_data)
+    connection.commit()
+    print("¡Éxito! Se han insertado exactamente 24,000 registros de progreso.")
+
+except Error as e:
+    print(f"Error: {e}")
+finally:
+    if connection.is_connected():
+        cursor.close()
+        connection.close()
+
