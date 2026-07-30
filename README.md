@@ -7,13 +7,6 @@
 
 ---
 
-## 👥 Integrantes del Equipo (Grupo 1)
-* **Alejandro Cadavid Velásquez** — Ingeniero de Datos y Analista de Datos
-* **Ingri Johana Rolón Torres** — Estudiante de Tecnología ADSO y Analista de Datos
-* **Luz Angelith Espinosa Mendoza** — Analista de Datos
-
----
-
 ## ⚠️ El Problema: Detección Tardía y Deserción Silenciosa
 > *"¿Qué pasaría si una institución pudiera saber que un estudiante está a punto de abandonar sus estudios antes de que realmente lo haga?"*
 
