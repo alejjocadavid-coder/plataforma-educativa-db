@@ -1,44 +1,57 @@
 # 🎓 Proyecto 4 — EduAnalytics Platform
 **Inteligencia de Negocios aplicada a la retención y progresión académica en entornos virtuales.**
+
 ### 🚀 BeTek / Makaia — Misión 15 (Análisis de Datos)
-**Fecha de Actualización:** 16 de julio de 2026
+**Fecha de Actualización:** 16 de julio de 2026  
 **Estado:** Implementación Finalizada y Operativa
 
 ---
 
-## 👥 Integrantes del Equipo (Grupo 1)
-* **Alejandro Cadavid Velásquez**
-* **Ingri Johana Rolón Torres**
-* **Luz Angelith Espinosa Mendoza**
+## ⚠️ El Problema: Detección Tardía y Deserción Silenciosa
+> *"¿Qué pasaría si una institución pudiera saber que un estudiante está a punto de abandonar sus estudios antes de que realmente lo haga?"*
+
+En la educación virtual, el gran desafío no es la inscripción, sino evitar la **deserción silenciosa**. Históricamente, las instituciones enfrentan los siguientes retos:
+* **Detección Tardía:** Se identificaba que un alumno había abandonado el curso semanas después de su última conexión.
+* **Pérdida de Oportunidades:** La deserción se detectaba cuando la oportunidad de recuperar al usuario era nula, afectando la retención, los ingresos y la reputación institucional.
+* **Datos Desconectados:** Contábamos con más de **24,000 registros históricos**, pero la información estaba atrapada en un análisis manual y reactivo.
 
 ---
+
+## 💡 La Solución: EduAnalytics Platform
+Transformamos los datos académicos en información accionable para anticiparnos al riesgo de deserción:
+* **Monitoreo:** Seguimiento continuo del progreso y desempeño académico.
+* **Alertas Tempranas:** Identificación oportuna de inactividad y señales de riesgo crítico.
+* **Priorización:** Clasificación y enfoque en los estudiantes que requieren intervención inmediata.
+* **Toma de Decisiones:** Visualizaciones y reportes directos para directivos y tutores.
+
+---
+
 ## 🏗️ Estado Actual del Proyecto (Julio 2026)
-Tras el desarrollo técnico, el proyecto **EduAnalytics** cuenta con los siguientes logros:
-* **Estructura de Base de Datos:** Implementada totalmente en MySQL, con integridad referencial verificada.
-* **Volumen de Datos:** Ingesta exitosa de **24,000 registros de progreso**, asegurando coherencia lógica.
-* **Integración BI:** Conexión validada con Power BI; las relaciones de datos permiten interactividad sin errores.
-* **Funcionalidad:** Tablero de control operativo para análisis de deserción y rendimiento en tiempo real.
+* **Estructura de Base de Datos:** Implementada totalmente en MySQL, con integridad referencial verificada y normalizada en Tercera Forma Normal (3FN).
+* **Volumen de Datos:** Ingesta y validación exitosa de **24,000 registros de progreso**, asegurando coherencia temporal y lógica.
+* **Integración BI:** Conexión validada con Power BI; las relaciones de datos permiten interactividad avanzada sin errores.
+* **Impacto Operativo:** Tableros directivos para análisis de deserción, rendimiento y retención en tiempo real.
 
 ---
 
 ## 📝 Contexto y Alcance del Sistema
 
 ### 1. Contexto
-Se diseñó y materializó una base de datos para una plataforma de educación en línea. El sistema gestiona cursos, módulos, estudiantes, asignación docente y progreso de aprendizaje detallado.
+Se diseñó y materializó una base de datos relacional para una plataforma de educación en línea. El sistema gestiona cursos, módulos, estudiantes, asignación docente y progreso de aprendizaje detallado.
 
 ### 🎯 2. Alcance
 El modelo de datos incluye:
-* **Estudiantes:** Información básica y cursos inscritos.
-* **Cursos:** Estructura principal del contenido educativo, compuesta por varios módulos.
-* **Docentes:** Gestión de profesores especializados vinculados a la oferta académica.
-* **Módulos:** Unidades temáticas específicas que conforman la ruta secuencial de un curso.
-* **Progreso:** Registro granular del avance y estado del estudiante por cada módulo izquierdo e individual.
+* **Estudiantes:** Información básica, género, correo electrónico y cursos inscritos.
+* **Cursos:** Estructura de contenido por módulos especializados.
+* **Docentes:** Gestión de profesores y áreas de especialidad.
+* **Módulos:** Unidades temáticas secuenciales por programa.
+* **Progreso:** Registro granular de avance, porcentaje y estado analítico.
 
 ### ⚠️ 3. Simplificaciones Técnicas Autorizadas
-Para garantizar un enfoque 100% centrado en la analítica educativa, se han aplicado las siguientes exclusiones al diseño:
-* No se modelan evaluaciones o exámenes.
-* No se incluyen foros o interacciones sociales.
-* No se gestionan certificados.
+Para garantizar un enfoque 100% centrado en la analítica educativa y de retención, se han aplicado las siguientes exclusiones:
+* No se modelan evaluaciones o exámenes escritos.
+* No se incluyen foros o interacciones sociales en la plataforma.
+* No se gestionan emisiones de certificados digitales.
 
 ---
 
@@ -47,7 +60,7 @@ Para garantizar un enfoque 100% centrado en la analítica educativa, se han apli
 2. Un curso contiene y está estructurado obligatoriamente por múltiples módulos académicos (8 módulos fijos por programa).
 3. Un docente cuenta con una especialidad específica y puede ser asignado a la instrucción de la oferta académica alineada.
 4. Un estudiante tiene un registro de progreso asociado de forma única a cada módulo de la inscripción que cursa (Relación Histórica Granular).
-5. El progreso se mide de forma exacta mediante porcentaje matemático (0.00% a 100.00%) o un estado lógico (completado / en curso / no iniciado).
+5. El progreso se mide de forma exacta mediante porcentaje matemático (0.00% a 100.00%) o un estado lógico (`No iniciado` / `En curso` / `Completado`).
 
 ---
 
@@ -69,21 +82,21 @@ Para optimizar la interpretación técnica y funcional del modelo, se ha impleme
 | :--- | :--- | :--- | :--- |
 | `id_docente` | INT | PRIMARY KEY, AUTO_INCREMENT | Identificador único del docente. |
 | `nombre` | VARCHAR(100) | NOT NULL | Nombre completo del profesor. |
-| `especialidad`| VARCHAR(100) | - | Área de experticia del docente. |
+| `especialidad` | VARCHAR(100) | - | Área de experticia del docente. |
 
 ### 2. Tabla: `ESTUDIANTES`
 | Atributo | Tipo de Dato | Restricciones | Descripción |
 | :--- | :--- | :--- | :--- |
-| `id_estudiante`| INT | PRIMARY KEY, AUTO_INCREMENT | Identificador único del alumno. |
+| `id_estudiante` | INT | PRIMARY KEY, AUTO_INCREMENT | Identificador único del alumno. |
 | `nombre` | VARCHAR(100) | NOT NULL | Nombre completo del estudiante. |
 | `email` | VARCHAR(150) | UNIQUE, NOT NULL | Correo electrónico de contacto. |
-| `fecha_registro`| DATE | NOT NULL | Fecha de alta en el sistema. |
+| `fecha_registro` | DATE | NOT NULL | Fecha de alta en el sistema. |
 
 ### 3. Tabla: `CURSOS`
 | Atributo | Tipo de Dato | Restricciones | Descripción |
 | :--- | :--- | :--- | :--- |
 | `id_curso` | INT | PRIMARY KEY, AUTO_INCREMENT | Identificador único del curso. |
-| `nombre_curso`| VARCHAR(200) | NOT NULL | Título del programa académico. |
+| `nombre_curso` | VARCHAR(200) | NOT NULL | Título del programa académico. |
 | `descripcion` | TEXT | - | Resumen del contenido del curso. |
 
 ### 4. Tabla: `CURSO_DOCENTE`
@@ -97,25 +110,25 @@ Para optimizar la interpretación técnica y funcional del modelo, se ha impleme
 | :--- | :--- | :--- | :--- |
 | `id_modulo` | INT | PRIMARY KEY, AUTO_INCREMENT | ID de la unidad temática. |
 | `id_curso` | INT | FOREIGN KEY (CURSOS) ON DELETE CASCADE | Curso al que pertenece el módulo. |
-| `nombre_modulo`| VARCHAR(200) | NOT NULL | Nombre del módulo específico. |
+| `nombre_modulo` | VARCHAR(200) | NOT NULL | Nombre del módulo específico. |
 | `contenido` | TEXT | - | Detalle o recursos del módulo. |
 
 ### 6. Tabla: `INSCRIPCIONES`
 | Atributo | Tipo de Dato | Restricciones | Descripción |
 | :--- | :--- | :--- | :--- |
-| `id_inscripcion`| INT | PRIMARY KEY, AUTO_INCREMENT | Matrícula operativa consecutiva limpia del alumno. |
-| `id_estudiante`| INT | FOREIGN KEY (ESTUDIANTES) | Estudiante vinculado. |
+| `id_inscripcion` | INT | PRIMARY KEY, AUTO_INCREMENT | Matrícula operativa consecutiva limpia del alumno. |
+| `id_estudiante` | INT | FOREIGN KEY (ESTUDIANTES) | Estudiante vinculado. |
 | `id_curso` | INT | FOREIGN KEY (CURSOS) | Curso matriculado. |
-| `fecha_inscripcion`| DATE | DEFAULT CURRENT_DATE | Fecha de la matrícula del alumno. |
-| `estado` | VARCHAR(20) | CHECK (Activa, Inactiva) | Estado operativo de la inscripción. |
+| `fecha_inscripcion` | DATE | DEFAULT CURRENT_DATE | Fecha de la matrícula del alumno. |
+| `estado` | VARCHAR(20) | CHECK (Activa, Inactiva, Completada) | Estado operativo de la inscripción. |
 
 ### 7. Tabla: `PROGRESO`
 | Atributo | Tipo de Dato | Restricciones | Descripción |
 | :--- | :--- | :--- | :--- |
 | `id_progreso` | INT | PRIMARY KEY, AUTO_INCREMENT | Seguimiento de avance granular e histórico. |
-| `id_inscripcion`| INT | FOREIGN KEY (INSCRIPCIONES) ON DELETE CASCADE | Enlace a la matrícula. |
+| `id_inscripcion` | INT | FOREIGN KEY (INSCRIPCIONES) ON DELETE CASCADE | Enlace a la matrícula. |
 | `id_modulo` | INT | FOREIGN KEY (MODULOS) | Enlace al módulo específico evaluado. |
-| `porcentaje_progreso`| DECIMAL(5,2)| CHECK (BETWEEN 0 AND 100) | Porcentaje de avance real. |
+| `porcentaje_progreso` | DECIMAL(5,2) | CHECK (BETWEEN 0 AND 100) | Porcentaje de avance real. |
 | `estado` | VARCHAR(20) | CHECK (No iniciado, En curso, Completado) | Estado analítico del módulo. |
 
 ---
@@ -126,11 +139,9 @@ Para optimizar la interpretación técnica y funcional del modelo, se ha impleme
 Estructura física relacional optimizada para auditoría histórica masiva, creada y ejecutada en MySQL Workbench.
 
 <details>
-<summary>📝 Haz clic aquí para desplegar el Script De Creación de Tablas (SQL)</summary>
+<summary>📝 Haz clic aquí para desplegar el Script de Creación de Tablas (SQL)</summary>
 
 ```sql
-CREATE DATABASE IF NOT EXISTS plataforma_educativa;
-USE plataforma_educativ```sql
 CREATE DATABASE IF NOT EXISTS plataforma_educativa;
 USE plataforma_educativa;
 
@@ -141,6 +152,7 @@ CREATE TABLE estudiantes (
     email VARCHAR(150) UNIQUE NOT NULL,
     fecha_registro DATE NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 CREATE TABLE docentes (
     id_docente INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -195,7 +207,7 @@ CREATE TABLE progreso (
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-
+---
 
 ```
 
