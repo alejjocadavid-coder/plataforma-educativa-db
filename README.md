@@ -240,7 +240,7 @@ try:
     connection = mysql.connector.connect(**db_config)
     cursor = connection.cursor()
 
-    # 1. Obtener todas las inscripciones actuales (asegúrate de que existen)
+    # 1. Obtener todas las inscripciones actuales
     cursor.execute("SELECT id_inscripcion FROM INSCRIPCIONES")
     inscripciones = [row[0] for row in cursor.fetchall()]
     
@@ -252,7 +252,6 @@ try:
     print("Generando 24,000 registros exactos de progreso...")
     progreso_data = []
     
-    # Repartimos los 24,000 registros entre las inscripciones disponibles
     for i in range(1, 24001):
         id_insc = random.choice(inscripciones)
         id_mod = random.choice(modulos)
@@ -262,7 +261,7 @@ try:
         progreso_data.append((i, id_insc, id_mod, porcentaje, estado, '2026-07-16'))
 
     # 4. Insertar en bloques
-    cursor.execute("TRUNCATE TABLE PROGRESO") # Limpiamos los 18,104 anteriores
+    cursor.execute("TRUNCATE TABLE PROGRESO")
     
     query = """INSERT INTO PROGRESO (id_progreso, id_inscripcion, id_modulo, porcentaje_progreso, estado, fecha_actualizacion) 
                VALUES (%s, %s, %s, %s, %s, %s)"""
@@ -493,7 +492,7 @@ El diseño e implementación física del modelo de EduAnalytics permite dar resp
 
 A través de la extracción, transformación y modelado de las tablas transaccionales, se ha consolidado el tablero de control directivo. El informe está conectado directamente al motor relacional y proporciona una interfaz fluida e interactiva de KPIs académicos.
 
-![Diseño del Dashboard Analítico](Construcción)
+![Diseño del Dashboard Analítico](https://app.powerbi.com/view?r=eyJrIjoiMzA2ODJjNDQtNjhiYy00MTViLWFhZmEtMGJjMWZhZTNmNzBlIiwidCI6IjU3N2ZjMWQ4LTA5MjItNDU4ZS04N2JmLWVjNGY0NTVlYjYwMCIsImMiOjR9Construcción)
 
 ---
 
