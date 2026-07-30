@@ -492,7 +492,7 @@ El diseño e implementación física del modelo de EduAnalytics permite dar resp
 
 A través de la extracción, transformación y modelado de las tablas transaccionales, se ha consolidado el tablero de control directivo. El informe está conectado directamente al motor relacional y proporciona una interfaz fluida e interactiva de KPIs académicos.
 
-[Haz clic aquí para abrir el Dashboard Interactivo en Power BI](https://app.powerbi.com/view?r=eyJrIjoiMzA2ODJjNDQtNjhiYy00MTViLWFhZmEtMGJjMWZhZTNmNzBlIiwidCI6IjU3N2ZjMWQ4LTA5MjItNDU4ZS04N2JmLWVjNGY0NTVlYjYwMCIsImMiOjR9)
+📝  Dashboard (Power BI) [Haz clic aquí para abrir el Dashboard Interactivo en Power BI](https://app.powerbi.com/view?r=eyJrIjoiMzA2ODJjNDQtNjhiYy00MTViLWFhZmEtMGJjMWZhZTNmNzBlIiwidCI6IjU3N2ZjMWQ4LTA5MjItNDU4ZS04N2JmLWVjNGY0NTVlYjYwMCIsImMiOjR9)
 
 ---
 
