@@ -317,7 +317,7 @@ Registros iniciales de validación manual unitaria para verificar herencias lóg
 <details>
 <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
 
-```python
+```sql
 -- POBLACIÓN DE CONTROL INICIAL
 
 USE plataforma_educativa;
@@ -492,7 +492,7 @@ El diseño e implementación física del modelo de EduAnalytics permite dar resp
 
 A través de la extracción, transformación y modelado de las tablas transaccionales, se ha consolidado el tablero de control directivo. El informe está conectado directamente al motor relacional y proporciona una interfaz fluida e interactiva de KPIs académicos.
 
-[Haz clic aquí para abrir el Dashboard Interactivo en Power BI](https://app.powerbi.com/view?r=eyJrIjoiMzA2ODJjNDQtNjhiYy00MTViLWFhZmEtMGJjMWZhZTNmNzBlIiwidCI6IjU3N2ZjMWQ4LTA5MjItNDU4ZS04N2JmLWVjNGY0NTVlYjYwMCIsImMiOjR9)
+![Diseño del Dashboard Analítico](https://app.powerbi.com/view?r=eyJrIjoiMzA2ODJjNDQtNjhiYy00MTViLWFhZmEtMGJjMWZhZTNmNzBlIiwidCI6IjU3N2ZjMWQ4LTA5MjItNDU4ZS04N2JmLWVjNGY0NTVlYjYwMCIsImMiOjR9Construcción)
 
 ---
 
@@ -506,12 +506,3 @@ Priorizamos la retención sobre la adquisición, protegiendo tanto la sostenibil
 
 Decisiones basadas en evidencia:
 Consolidamos un ecosistema donde la analítica de datos es el motor principal para la toma de decisiones estratégicas.
-
-
-
-
-finally:
-    if connection.is_connected():
-        cursor.close()
-        connection.close()
-
