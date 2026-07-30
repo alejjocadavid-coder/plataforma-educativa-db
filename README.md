@@ -317,7 +317,7 @@ Registros iniciales de validación manual unitaria para verificar herencias lóg
 <details>
 <summary>📝 Haz clic aquí para desplegar el Script de Inserción de Datos (SQL)</summary>
 
-```sql
+```python
 -- POBLACIÓN DE CONTROL INICIAL
 
 USE plataforma_educativa;
