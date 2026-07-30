@@ -207,6 +207,8 @@ CREATE TABLE progreso (
     CONSTRAINT chk_estado_prog CHECK (estado IN ('No iniciado', 'En curso', 'Completado'))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+```sql
+
 ### 🗂️ 1. Script de Creación de Tablas (DDL)
 Estructura física relacional optimizada para auditoría histórica masiva, creada y ejecutada en MySQL Workbench.
 
