@@ -490,9 +490,14 @@ El diseño e implementación física del modelo de EduAnalytics permite dar resp
 
 ## 📝  Dashboard Interactivo (Power BI) 
 
-A través de la extracción, transformación y modelado de las tablas transaccionales, se ha consolidado el tablero de control directivo. El informe está conectado directamente al motor relacional y proporciona una interfaz fluida e interactiva de KPIs académicos.
+### 1. Vista de Retención y Gestión de Riesgo
+![Vista de Retención y Gestión de Riesgo](image_be53e5.png)
 
-📝  Dashboard (Power BI) [Haz clic aquí para abrir el Dashboard Interactivo en Power BI](https://app.powerbi.com/view?r=eyJrIjoiMzA2ODJjNDQtNjhiYy00MTViLWFhZmEtMGJjMWZhZTNmNzBlIiwidCI6IjU3N2ZjMWQ4LTA5MjItNDU4ZS04N2JmLWVjNGY0NTVlYjYwMCIsImMiOjR9)
+### 2. Vista de Progreso y Desempeño Académico
+![Vista de Progreso y Desempeño Académico](image_be5388.png)
+
+### 3. Vista de Comportamiento Temporal y Comparativa
+![Vista de Comportamiento Temporal y Comparativa](image_be50c2.png)
 
 ---
 
