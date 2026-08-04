@@ -494,10 +494,10 @@ El diseño e implementación física del modelo de EduAnalytics permite dar resp
 ![Vista de Retención y Gestión de Riesgo]((https://raw.githubusercontent.com/alejjocadavid-coder/plataforma-educativa-db/main/src/1.jpeg)
 
 ### 2. Vista de Progreso y Desempeño Académico
-![Vista de Progreso y Desempeño Académico](src/2.jpeg)
+![Vista de Progreso y Desempeño Académico](https://raw.githubusercontent.com/alejjocadavid-coder/plataforma-educativa-db/main/src/2.jpeg)
 
 ### 3. Vista de Comportamiento Temporal y Comparativa
-![Vista de Comportamiento Temporal y Comparativa](src/3.jpeg)
+![Vista de Comportamiento Temporal y Comparativa](https://raw.githubusercontent.com/alejjocadavid-coder/plataforma-educativa-db/main/src/3.jpeg)
 
 ---
 
