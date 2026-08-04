@@ -491,9 +491,9 @@ El diseño e implementación física del modelo de EduAnalytics permite dar resp
 ## 📝  Dashboard Interactivo (Power BI) 
 
 ### 1. Vista de Retención y Gestión de Riesgo
-![Vista de Retención y Gestión de Riesgo](src/1.jpeg>
-)
-
+![Vista de Retención y Gestión de Riesgo](src/1.jpeg)
+1. **Vista de Retención y Gestión de Riesgo**
+![Vista de Retención y Gestión de Riesgo](src/1.jpeg)
 ### 2. Vista de Progreso y Desempeño Académico
 ![Vista de Progreso y Desempeño Académico](src/2.jpeg)
 
